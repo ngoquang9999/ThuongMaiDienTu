@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+
+<!--  Bootstrap CDN -->
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="cssDefine/css.css">
+
+
+</head>
+
+<body>
+	<div class="container">
+		<form action="/makeSchedule" method="POST">
+			<input type="hidden" name="idCourse" th:value="${idCourse}">
+			<h2>Xếp lịch dạy</h2>
+			<p th:text="'Khoá học: '+${nameCourse}"></p>
+			<p th:text="'Giáo viên: '+${user.fullname}"></p>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Thứ 2</th>
+						<th>Thứ 3</th>
+						<th>Thứ 4</th>
+						<th>Thứ 5</th>
+						<th>Thứ 6</th>
+						<th>Thứ 7</th>
+						<th>Chủ Nhật</th>
+					</tr>
+				</thead>
+				<tbody>
+					<input type="hidden" id="listSchedule" name="listSchedule" value="">
+					<tr>
+						<td>7:00 - 9:00</td>
+						<td><input type="checkbox" value="Mon-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','8:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','8:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','8:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','8:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','8:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','8:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-7" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','8:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>9:00 - 11:00</td>
+						<td><input type="checkbox" value="Mon-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','10:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','10:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','10:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','10:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','10:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','10:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-9" class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','10:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>13:00 - 15:00</td>
+						<td><input type="checkbox" value="Mon-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','14:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','14:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','14:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','14:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','14:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','14:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-13"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','14:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>15:00 - 17:00</td>
+						<td><input type="checkbox" value="Mon-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','16:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','16:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','16:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','16:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','16:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','16:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-15"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','16:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>17:00 - 19:00</td>
+						<td><input type="checkbox" value="Mon-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','18:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','18:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','18:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','18:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','18:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','18:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-17"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','18:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>19:00 - 21:00</td>
+						<td><input type="checkbox" value="Mon-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','20:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','20:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','20:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','20:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','20:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','20:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-19"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','20:00')==false}"></td>
+					</tr>
+					<tr>
+						<td>21:00 - 23:00</td>
+						<td><input type="checkbox" value="Mon-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Mon','22:00')==false}"></td>
+						<td><input type="checkbox" value="Tue-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Tue','22:00')==false}"></td>
+						<td><input type="checkbox" value="Wed-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Wed','22:00')==false}"></td>
+						<td><input type="checkbox" value="Thu-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Thu','22:00')==false}"></td>
+						<td><input type="checkbox" value="Fri-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Fri','22:00')==false}"></td>
+						<td><input type="checkbox" value="Sat-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sat','22:00')==false}"></td>
+						<td><input type="checkbox" value="Sun-21"
+							class="checkboxItem"
+							th:if="${schedule.haveScheduleByTeacher(username,'Sun','22:00')==false}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-warning" id="btnSave">Lưu lại</button>
+		</form>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+	$("#btnSave").hide();
+	var result="";
+	$(document).ready(function() {
+    $('.checkboxItem').change(function() {
+        if(this.checked) {
+        	result+=this.value+" ";
+           $('#listSchedule').val(result);
+        }
+        if(result!="")
+       		 $("#btnSave").show();
+       	else
+       		 $("#btnSave").hide();
+                
+    });
+});
+	</script>
+
+</body>
+</html>

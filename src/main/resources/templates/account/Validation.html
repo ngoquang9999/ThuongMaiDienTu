@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CreateAccountTeacher</title>
+<link rel="stylesheet" href="account/css/style3.css">
+<link rel="stylesheet"
+	href="account/fontawesome-free-5.11.1-web/css/all.css">
+</head>
+<h1>Xác nhận email</h1>
+<body>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="/validate" method="POST">
+				<input type="hidden" name="role" th:value="${role}">
+				<h2>Còn một bước nữa là hoàn tất...</h2>
+				<b>Vui lòng nhập mã gồm 6 chữ số mà chúng tôi đã gửi vào email
+					bạn đã nhập!</b> <input type="text" name="validationCode" id="validateCode"
+					required />
+				<p th:text="${error}" style="color: red"></p>
+				<button type="submit" class="btn btn-success">Thành công!</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

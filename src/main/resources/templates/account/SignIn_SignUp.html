@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SignIn</title>
+<link rel="stylesheet" href="account/css/style.css">
+<link rel="stylesheet" href="account/fontawesome-free-5.11.1-web/css/all.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<h2>Chào mừng bạn đến với trung tâm Anh ngữ Zolo</h2>
+<body>
+	<div class="container" id="container">
+		<div class="form-container sign-up-container">
+			<form action="#"  th:action="@{/validationForStudent}"
+				th:object="${student}" method="POST" enctype="multipart/form-data">
+				<h1>Tạo tài khoản</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>Click vào nút dưới đây để upload avatar</span>
+				<input type="file"
+					id="imgInp1" name="file1" required> <img id="blah1" src="#"
+					alt="your image" style="width: 100px; height: 100px;">
+				<p id="imgInfo1">Bạn không có ảnh!</p>
+				<input type="text" id="usernameField"
+					th:field="*{accountname}" placeholder="Tên đăng nhập" required />
+					<p id="errorUsername" style="color:red"></p>
+					<input
+					type="password" th:field="*{password}" placeholder="Mật khẩu" required /> <input
+					type="text" th:field="*{fullname}" placeholder="Họ và tên" required /> <input
+					type="date" th:field="*{date}" placeholder="Ngày sinh" required /> <select
+					th:field="*{sex}">
+					<option th:each="p : ${listSex}" th:value="${p}" th:text="${p}" />
+				</select> <input type="email" placeholder="Email" th:field="*{email}" /> <input
+					type="text" th:field="*{phonenumber}" placeholder="Số điện thoại" />
+				<input type="text" th:field="*{address}" placeholder="Địa chỉ" required />
+				<input type="text" th:field="*{biography}" placeholder="Tiểu sử bản thân" required />
+				<button id="registerButton" type="submit">Sign Up</button>
+			</form>
+		</div>
+		<div class="form-container sign-in-container">
+			<form name='f' th:action="@{/j_spring_security_check}" method='POST'>
+				<h1>Sign in</h1>
+				<div class="social-container">
+					<a href="#" class="social"><i class="fab fa-facebook-f"></i></a> <a
+						href="#" class="social"><i class="fab fa-google-plus-g"></i></a> <a
+						href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+				</div>
+				<span>or use your account</span> <input type="text" name="username"
+					placeholder="Tên đăng nhập" required/> <input type="password" name="password"
+					placeholder="Mật khẩu" required/>
+					<p th:if="${#request.getParameter('error') == 'true'}" style="color:red;">Tên đăng nhập hoặc mật khẩu không chính xác!</p>
+					<a href="/forgetPassword">Quên mật khẩu?</a>
+				<button type="submit">Đăng nhập</button>
+			</form>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Chào mừng bạn đã quay trở lại!</h1>
+					<p>Để giữ kết nối với chúng tôi xin vui lòng nhập thông tin cá nhân</p>
+					<button class="ghost" id="signIn">Đăng nhập</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Xin chào bạn!</h1>
+					<p>Nhập chi tiết cá nhân để bắt đầu hành trình với chúng tôi!</p>
+					<button class="ghost" id="signUp">Đăng Ký</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('right-panel-active');
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('right-panel-active');
+    });
+    
+    
+    $(document).ready(function() {
+
+	$("#usernameField").keyup(function(event) {
+		checkAvailableUsername();
+	});
+
+});
+
+function checkAvailableUsername(){
+	var set = {};
+	set["text"] = $("#usernameField").val();
+
+	$.ajax({
+		type : "POST",
+		contentType : "application/json",
+		url : "/checkAvailableUsernameStudent",
+		data : JSON.stringify(set),
+		dataType : 'json',
+		cache : false,
+		timeout : 600000,
+		success : function(data) {
+			
+			var json = JSON.stringify(data, null, 4);
+			var result = JSON.parse(json);
+			$("#errorUsername").html(result.content);
+			if(result.content=="Tài khoản này đã tồn tại!")
+				$("#registerButton").attr("style","cursor: not-allowed;opacity: 0.5;text-decoration: none;pointer-events: none;");
+			if(result.content=="")
+				$("#registerButton").attr("style","");
+
+		},
+		error : function(e) {
+
+			alert("Checking username failed!");
+
+		}
+	});
+}
+
+$('#blah1').hide();
+	$("#imgInfo1").show();
+	
+	function readURL1(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			$('#blah1').attr('src', e.target.result);
+		}
+		$('#blah1').show();
+		$("#imgInfo1").hide();
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+$("#imgInp1").change(function() {
+	readURL1(this);
+});
+</script>
+</body>
+</html>

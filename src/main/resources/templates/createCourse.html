@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+
+<!--  Bootstrap CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://use.fontawesome.com/3d5463da23.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="cssDefine/css.css">
+</head>
+<body>
+	<th:block th:include="/_headerTeacher"></th:block>
+	<div class="container course_form">
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<td>
+						<form class="well form-horizontal parent" action="#"
+							th:action="@{/createNewCourse}" method="post"
+							th:object="${course}" enctype="multipart/form-data">
+
+							<fieldset class="format-rgt">
+								<div class="form-group">
+									<div class="col-md-12 inputGroupContainer">
+										<h5 class="title_form">TẠO KHÓA HỌC MỚI</h5>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-6 control-label title_format">Chọn
+										ảnh khóa học</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input type="file"
+												id="imgInp" name="file" required> <img id="blah"
+												src="#" alt="your image" style="width:50px;height:25px;">
+											<p id="imgInfo">You have no image!</p>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="col-md-4 control-label title_format">Tên
+										khóa học</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="courseName" placeholder="Tên" class="form-control"
+												required="true" th:field="*{nameCourse}" type="text">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-4 control-label title_format">Thể
+										loại</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon" style="max-width: 100%;"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												class="selectpicker form-control" th:field="*{type}">
+												<option th:each="p : ${listType}" th:value="${p}"
+													th:text="${p}" />
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-6 control-label title_format">Ngày
+										khai giảng</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input type="date"
+												id="startTime" class="form-control" name="startTime"
+												th:field="*{dateStart}" required>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-6 control-label title_format">Mô
+										tả</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span>
+											<textarea name="addressLine1"
+												placeholder="Viết mô tả cho khoá học này"
+												class="form-control" 
+												th:field="*{description}" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-6 control-label title_format">Tóm tắt nội dung bài học</label>
+									<div class="col-md-12 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span>
+											<textarea name="addressLine1"
+												placeholder="Viết tóm tắt"
+												class="form-control" 
+												th:field="*{summary}" required></textarea>
+										</div>
+									</div>
+								</div>
+								<div class="form-group ">
+									<label class="col-md-4 control-label"></label>
+									<div class="col-md-12 inputGroupContainer rgtCourse_div">
+										<input name="createVideoCourse" style="margin-bottom: 20px"
+											class="button_rgtCourse " value="Tạo" type="submit">
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer class="ftco-footer ftco-bg-dark ftco-section">
+		<div class="container">
+			<div class="row mb-5">
+				<div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-5">
+						<h2 class="ftco-heading-2">Have a Questions?</h2>
+						<div class="block-23 mb-3">
+							<ul>
+								<li><span class="icon icon-map-marker"></span><span
+									class="text">203 Fake St. Mountain View, San Francisco,
+										California, USA</span></li>
+								<li><a href="#"><span class="icon icon-phone"></span><span
+										class="text">+2 392 3929 210</span></a></li>
+								<li><a href="#"><span class="icon icon-envelope"></span><span
+										class="text">info@yourdomain.com</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-5">
+						<h2 class="ftco-heading-2">Recent Blog</h2>
+						<div class="block-21 mb-4 d-flex">
+							<a class="blog-img mr-4"
+								style="background-image: url(images/image_1.jpg);"></a>
+							<div class="text">
+								<h3 class="heading">
+									<a href="#">Even the all-powerful Pointing has no control
+										about</a>
+								</h3>
+								<div class="meta">
+									<div>
+										<a href="#"><span class="icon-calendar"></span> June 27,
+											2019</a>
+									</div>
+									<div>
+										<a href="#"><span class="icon-person"></span> Admin</a>
+									</div>
+									<div>
+										<a href="#"><span class="icon-chat"></span> 19</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="block-21 mb-5 d-flex">
+							<a class="blog-img mr-4"
+								style="background-image: url(images/image_2.jpg);"></a>
+							<div class="text">
+								<h3 class="heading">
+									<a href="#">Even the all-powerful Pointing has no control
+										about</a>
+								</h3>
+								<div class="meta">
+									<div>
+										<a href="#"><span class="icon-calendar"></span> June 27,
+											2019</a>
+									</div>
+									<div>
+										<a href="#"><span class="icon-person"></span> Admin</a>
+									</div>
+									<div>
+										<a href="#"><span class="icon-chat"></span> 19</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-5 ml-md-4">
+						<h2 class="ftco-heading-2">Links</h2>
+						<ul class="list-unstyled">
+							<li><a href="#"><span
+									class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+							<li><a href="#"><span
+									class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
+							<li><a href="#"><span
+									class="ion-ios-arrow-round-forward mr-2"></span>Services</a></li>
+							<li><a href="#"><span
+									class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
+							<li><a href="#"><span
+									class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-3">
+					<div class="ftco-footer-widget mb-5">
+						<h2 class="ftco-heading-2">Subscribe Us!</h2>
+						<form action="#" class="subscribe-form">
+							<div class="form-group">
+								<input type="text" class="form-control mb-2 text-center"
+									placeholder="Enter email address"> <input type="submit"
+									value="Subscribe" class="form-control submit px-3">
+							</div>
+						</form>
+					</div>
+					<div class="ftco-footer-widget mb-5">
+						<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
+						<ul
+							class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+							<li class="ftco-animate"><a href="#"><span
+									class="icon-twitter"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span
+									class="icon-facebook"></span></a></li>
+							<li class="ftco-animate"><a href="#"><span
+									class="icon-instagram"></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 text-center">
+
+					<p>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script>
+						All rights reserved | This template is made with <i
+							class="icon-heart" aria-hidden="true"></i> by <a
+							href="https://colorlib.com" target="_blank">Colorlib</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	$('#blah').hide();
+	$("#imgInfo").show();
+	function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			$('#blah').attr('src', e.target.result);
+		}
+		$('#blah').show();
+		$("#imgInfo").hide();
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
+$("#imgInp").change(function() {
+	readURL(this);
+});
+	</script>
+	 <!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+	  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	  (function(){
+	  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	  s1.async=true;
+	  s1.src='https://embed.tawk.to/5ffa7dd9a9a34e36b96acc3c/1erl7n764';
+	  s1.charset='UTF-8';
+	  s1.setAttribute('crossorigin','*');
+	  s0.parentNode.insertBefore(s1,s0);
+	  })();
+  </script>
+  <!--End of Tawk.to Script-->
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="css/aos.css">
+<link rel="stylesheet" href="css/ionicons.min.css">
+
+<link rel="stylesheet" href="css/flaticon.css">
+<link rel="stylesheet" href="css/icomoon.css">
+
+<!--  Bootstrap CDN -->
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="cssDefine/css.css">
+
+
+</head>
+
+<body>
+	<div class="container">
+		<h2>Thời khoá biểu môn học</h2>
+		<p th:text="'Khoá học: '+${course.nameCourse}"></p>
+		<p th:text="'Giáo viên: '+${course.nameTeacher}"></p>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Thứ 2</th>
+					<th>Thứ 3</th>
+					<th>Thứ 4</th>
+					<th>Thứ 5</th>
+					<th>Thứ 6</th>
+					<th>Thứ 7</th>
+					<th>Chủ Nhật</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>7:00 - 9:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','8:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','8:00')}">X</p></td>
+					
+				</tr>
+				<tr>
+					<td>9:00 - 11:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','10:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','10:00')}">X</p></td>
+				</tr>
+				<tr>
+					<td>13:00 - 15:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','14:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','14:00')}">X</p></td>
+				</tr>
+				<tr>
+					<td>15:00 - 17:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','16:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','16:00')}">X</p></td>
+				</tr>
+				<tr>
+					<td>17:00 - 19:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','18:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','18:00')}">X</p></td>
+				</tr>
+				<tr>
+					<td>19:00 - 21:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','20:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','20:00')}">X</p></td>
+				</tr>
+				<tr>
+					<td>21:00 - 23:00</td>
+					<td><p th:if="${schedule.haveSchedule(id,'Mon','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Tue','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Wed','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Thu','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Fri','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sat','22:00')}">X</p></td>
+					<td><p th:if="${schedule.haveSchedule(id,'Sun','22:00')}">X</p></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<script src="js/aos.js"></script>
+	<script src="js/jquery.animateNumber.min.js"></script>
+	<script src="js/scrollax.min.js"></script>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+	<script src="js/google-map.js"></script>
+	<script src="js/main.js"></script>
+	
+	 <!--Start of Tawk.to Script-->
+	<script type="text/javascript">
+	  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+	  (function(){
+	  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+	  s1.async=true;
+	  s1.src='https://embed.tawk.to/5ffa7dd9a9a34e36b96acc3c/1erl7n764';
+	  s1.charset='UTF-8';
+	  s1.setAttribute('crossorigin','*');
+	  s0.parentNode.insertBefore(s1,s0);
+	  })();
+  </script>
+  <!--End of Tawk.to Script-->
+
+</body>
+</html>
